@@ -2,18 +2,45 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        <title>{% block title %}Blog{% endblock %}</title>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+        {% block stylesheets %}
+         {# symphony utilise le chemin absolu pas besoin de remonter dans les repertoire pour atteindre la cible #}
+            <link rel="stylesheet" href="css/screen.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Spartan&display=swap">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            {% block header %}
+                <nav id="nav" class="navbar navbar-dark bg-dark">
+                    <ul >
+                        <li class="navbar-brand"><a href="{{path('app_home')}}" title="accueil" class="text-white" >Accueil</a></li>
+                        <li class="navbar-brand"> <a href="{{path('app_tableau')}}" title="tableau" class="text-white" >Tableau</a></li>
+                        <li class="navbar-brand"> <a href="{{path('app_article')}}" title="article" class="text-white" >Article</a></li>
+                    </ul>
+                </nav>
+            {% endblock %}
+        </header>
+
+            {% block body %}{%endblock%}
+
+
+        <footer>
+            {% block footer %}
+                <div class="bg-dark">
+                    <h3 class="p-2 text-center text-white" > Footer </h3>
+                </div>
+            {% endblock %}
+        </footer>
+        {% block jquery %}
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        {% endblock %}
     </body>
+
 </html>

@@ -1,0 +1,21 @@
+
+.title{
+color:red;
+font-size:30px;
+text-align: center;
+}
+/*n'est pas pris en compte*/
+/*table{
+display:inline-block;
+border: 1px solid #ffcccc;
+width: 50%;
+
+}*/
+
+.inf{
+color: blue;
+}
+.sup{
+color:red;
+
+}

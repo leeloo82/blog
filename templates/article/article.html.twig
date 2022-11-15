@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}Article{% endblock %}
+
+
+
+{# import du block js de base html et ajout du module specifique a la page #}
+
+
+{% block body %}
+<div class="container">
+    <h1>Liste d'articles</h1>
+    <div class="list-group">
+        <a class=" list-group-item list-group-item-action" href="{{ path('afficher_article', { id: '1' }) }}">Détail de l'article 1</a>
+
+        <a class=" list-group-item list-group-item-action " href="{{ path('afficher_article', { id: '2' }) }}">Détail de l'article 2 </a>
+    </div>
+</div>
+
+
+<div class="d-flex justify-content-center">
+    <div id="votes">
+        <button data-vote="up" class="vote far fa-arrow-alt-circle-up"></button>
+        <button data-vote="down" class="vote far fa-arrow-alt-circle-down"></button>
+        <p>votes: <span id="nbVotes"></span></p>
+    </div>
+</div>
+
+    {% block jquery %}
+        <script src="js/vote.js"></script>
+    {% endblock %}
+
+{% endblock %}

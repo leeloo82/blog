@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+{% block title %}tableau{% endblock %}
+
+
+{% block body %}
+
+    <div>
+        <h3>Tableau de nombres aléatoires trier paires/impaires: </h3>
+        <div class="tab container">
+            <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Paires</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key, tableau in tableau%}
+                    {% if tableau%2==0%}
+                        <tr>
+                            <th scope="col">{{ tableau }}</th>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab container">
+            <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Impaires</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key, tableau in tableau%}
+                    {% if tableau%2!=0%}
+                        <tr>
+                            <th scope="col">{{ tableau }}</th>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <p>Valeur maximal de mon tableau de nombres est: {{ valMax }}</p>
+    </div>
+
+    <div>
+        {# méthode pour récupérer le premier element d'un tableau nom du tableau|first note: pour le dernier last #}
+        <p>Tableau premier élément du tableau string:</p>
+        <ul>
+            <li>{{ string|first}}</li>
+        </ul>
+    </div>
+
+    <div>
+        <p>Tableau premier lettre d'une chaine de caractère en majuscule:</p>
+        <ul>
+            {% for key, string in string%}
+                <li>{{ string|capitalize}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <p>Affichage aléatoire d'une donnée d'un tableau:</p>
+        <ul>
+            <li>{{ random(string) |capitalize}}</li>
+        </ul>
+    </div>
+
+    <div>
+        <p>Affichage différent selon si la date reçue est supérieur ou inférieur à la date du jour bleu si inférieur rouge si supérieur:</p>
+
+        {% if "now"|date("Y-m-d") > date %}
+            <div class="inf">
+                <p>{{ date }}</p>
+            </div>
+        {% else %}
+            <div class="sup">
+                <ul>
+                    <li>{{ date }}</li>
+                </ul>
+
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
