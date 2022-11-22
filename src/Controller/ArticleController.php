@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
-//use Cassandra\Date;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use DateTime;
 
-/*fake n'est pas reconnu*/
+use App\Entity\Article;
+use Doctrine\ORM\EntityManagerInterface;
+
+/*finstaller les librairie faker*/
 use Faker\Factory;
 
 class ArticleController extends AbstractController
@@ -143,5 +145,24 @@ class ArticleController extends AbstractController
 
     }
 
+    /**
+     * @Route("/article", name="app_article")
+     */
+    public function articleObject(EntityManagerInterface $entityManager)
+    {
 
+        $article = new Article();
+        $article->setTitre('Mon article 3');
+        $article->setContenu('MAGIQUE');
+        $article->setDate(new DateTime(15-05-2016));
+
+        $entityManager->persist($article);
+        $entityManager->flush();
+
+        //redirige vers la page
+        return $this->render('article/article.html.twig', [
+                   'controller_article' => 'Article',
+               ]);
+
+    }
 }
